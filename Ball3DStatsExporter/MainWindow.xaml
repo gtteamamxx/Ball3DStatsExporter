@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ball3DStatsExporter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Ball3D Status Converter" 
+        Height="600" Width="800"
+        MinHeight="600"
+        MinWidth="800"
+        MaxWidth="1000"
+        MaxHeight="700">
+    
     <Grid>
-        
+        <StackPanel>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center">
+                
+                        <TextBlock Foreground="Red"
+                                   FontWeight="Bold"
+                                   FontSize="20"
+                                   Text="Red team code"
+                                   HorizontalAlignment="Center"/>
+                
+                        <TextBox BorderBrush="Gray"
+                                 BorderThickness="1"
+                                 Width="150"
+                                 Name="textbox_RedTeamCode"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Foreground="Blue"
+                                   FontWeight="Bold"
+                                   FontSize="20"
+                                   Text="Blue team code"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBox BorderBrush="Gray"
+                                 BorderThickness="1"
+                                 Width="150"
+                                 Name="textbox_BlueTeamCode"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Separator />
+
+            <TextBlock Foreground="Gray"
+                       FontSize="16"
+                        Text="Code to export: " />
+            
+            <TextBox Name="textbox_SourceCode"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     AllowDrop="True"
+                     Height="420"
+                     VerticalScrollBarVisibility="Visible"/>
+        </StackPanel>
+
+        <Button Name="button_Convert"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Width="100"
+                Height="30"
+                Content="Export to .csv"
+                Click="button_Convert_Click"
+                Margin="10"
+                IsEnabled="False"/>
     </Grid>
 </Window>
