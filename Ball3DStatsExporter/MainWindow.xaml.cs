@@ -58,8 +58,12 @@ namespace Ball3DStatsExporter
             var codeText = textbox_SourceCode.Text;
 
             string status = codeText.Substring(codeText.IndexOf("GAME ENDED"), 29).Remove(0,13).Trim();
-            Match.date = status.Substring(0, 10).Trim();
-            Match.time = status.Replace(Match.date, "").Trim();
+
+            var date = status.Substring(0, 10).Trim();
+            Match.time = status.Replace(date, "").Trim();
+            var newdate = date.Split('.');
+            Match.date = $"{newdate[2]}.{newdate[1]}.{newdate[0]}";
+            
 
             Match.listOfTeams = new List<Team>();
 
@@ -143,8 +147,8 @@ namespace Ball3DStatsExporter
                 using (FileStream fs = File.Create(filename, 1024))
                 {
                     StringBuilder sb = new StringBuilder();
-
-                    sb.Append($"{Match.date.Replace(".", "/")},{Match.time},,{Match.listOfTeams[0].name},{Match.listOfTeams[0].pointsFirstHalf}|{Match.listOfTeams[0].pointsSecondHalf}|{Match.listOfTeams[0].pointsSumOfHalfs},");
+                    sb.Append("Date,Time,Venue,Teams,Results,Outcome,Players,KickAccuracy,Points,Goals,Assists\r\n");
+                    sb.Append($"{Match.date.Replace(".", "/")},{Match.time}:00,,{Match.listOfTeams[0].name},{Match.listOfTeams[0].pointsFirstHalf}|{Match.listOfTeams[0].pointsSecondHalf}|{Match.listOfTeams[0].pointsSumOfHalfs},");
                     sb.Append($"{Match.listOfTeams[0].GetMatchText(Match.listOfTeams[1])},{Match.listOfTeams[0].listOfPlayers[0].name},");
                     sb.Append($"{Match.listOfTeams[0].listOfPlayers[0].kickAccuracy},{Match.listOfTeams[0].listOfPlayers[0].points.ToString()},{Match.listOfTeams[0].listOfPlayers[0].goals.ToString()},");
                     sb.Append($"{Match.listOfTeams[0].listOfPlayers[0].assists.ToString()}");
