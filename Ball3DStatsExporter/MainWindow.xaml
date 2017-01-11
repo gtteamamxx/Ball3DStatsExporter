@@ -26,7 +26,7 @@
                         <TextBlock Foreground="Red"
                                    FontWeight="Bold"
                                    FontSize="20"
-                                   Text="Red team code"
+                                   Text="Full RED name"
                                    HorizontalAlignment="Center"/>
                 
                         <TextBox BorderBrush="Gray"
@@ -41,7 +41,7 @@
                         <TextBlock Foreground="Blue"
                                    FontWeight="Bold"
                                    FontSize="20"
-                                   Text="Blue team code"
+                                   Text="Full BLUE name"
                                    HorizontalAlignment="Center"/>
 
                         <TextBox BorderBrush="Gray"

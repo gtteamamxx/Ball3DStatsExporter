@@ -97,7 +97,7 @@ namespace Ball3DStatsExporter
             int playerIndex = codeText.IndexOf($"{player.name}:");
             var lenght = codeText.IndexOf("--------------------------------------------", playerIndex);
 
-            string stringOfPlayer = codeText.Substring(playerIndex,  (lenght == -1 ? codeText.Length : lenght) - playerIndex).Remove(0, player.name.Length+1).Replace("\r\n", " ");
+            string stringOfPlayer = codeText.Substring(playerIndex, (lenght == -1 ? codeText.Length : lenght) - playerIndex).Remove(0, player.name.Length+1).Replace("\r\n", " ");
 
             string[] splittedPlayer = Regex.Replace(stringOfPlayer, @"\s+", " ").Split(' ');
 
@@ -111,13 +111,11 @@ namespace Ball3DStatsExporter
                 {
                     player.goals = int.Parse(splittedPlayer[i + 1]);
                 }
-                else if(splittedPlayer[i] == "Kick" &&
-                    splittedPlayer[i+1] == "Accuracy:")
+                else if(splittedPlayer[i] == "Kick" && splittedPlayer[i+1] == "Accuracy:")
                 {
                     player.kickAccuracy = splittedPlayer[i + 2].Replace("%", "");
                 }
-                else if (splittedPlayer[i] == "Ranking" &&
-                    splittedPlayer[i + 1] == "Points:")
+                else if (splittedPlayer[i] == "Ranking" && splittedPlayer[i + 1] == "Points:")
                 {
                     player.points = int.Parse(splittedPlayer[i + 2]);
                 }
@@ -128,7 +126,7 @@ namespace Ball3DStatsExporter
         private void ShowSaveFileDialog()
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = $"{Match.listOfTeams[0].name}_vs_{Match.listOfTeams[1].name}_{Match.date.Replace(".", "_")}_{Match.time}";
+            dlg.FileName = $"{textbox_RedTeamCode.Text.Trim().Replace(" ", "_")}_vs_{textbox_BlueTeamCode.Text.Trim().Replace(" ", "_")}_{Match.date.Replace(".", "_")}_{Match.time.Replace(":","-")}";
             dlg.DefaultExt = ".csv"; 
             dlg.Filter = "CSV file (.csv)|*.csv"; 
 
