@@ -195,7 +195,7 @@ namespace Ball3DStatsExporter
                 }
 
                 string[] splittedPlayerss = Regex.Replace(stringOfPlayers, @"\s+", " ").Split(' ');
-
+                /*Fix if player is without any country */
                 var temp = splittedPlayerss;
                 for(int i = 1; i < temp.Length; i++)
                 {
@@ -207,7 +207,7 @@ namespace Ball3DStatsExporter
                         splittedPlayerss = list.ToArray<string>();
                     }
                 }
-
+                /* =================================== */
                 Player tempPlayer = new Player();
                 for (int i = 1; i < splittedPlayerss.Length; i++)
                 {
