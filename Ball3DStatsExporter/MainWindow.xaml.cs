@@ -64,7 +64,6 @@ namespace Ball3DStatsExporter
             var newdate = date.Split('.');
             Match.date = $"{newdate[2]}.{newdate[1]}.{newdate[0]}";
             
-
             Match.listOfTeams = new List<Team>();
 
             var teamRed = new Team() { name = textbox_RedTeamCode.Text };
@@ -197,6 +196,18 @@ namespace Ball3DStatsExporter
 
                 string[] splittedPlayerss = Regex.Replace(stringOfPlayers, @"\s+", " ").Split(' ');
 
+                var temp = splittedPlayerss;
+                for(int i = 1; i < temp.Length; i++)
+                {
+                    if(temp[i] == "|" && temp[i-1].Contains(":"))
+                    {
+                        var list = splittedPlayerss.ToList();
+                        list.Insert(i, "UNKNOWN");
+
+                        splittedPlayerss = list.ToArray<string>();
+                    }
+                }
+
                 Player tempPlayer = new Player();
                 for (int i = 1; i < splittedPlayerss.Length; i++)
                 {
@@ -207,7 +218,6 @@ namespace Ball3DStatsExporter
                     else if((i - 1) % 5 == 3) // login
                     {
                         tempPlayer.name = splittedPlayerss[i];
-
                         GetDetailInfoAboutPlayer(tempPlayer, codeText);
                         listOfPlayers[n].Add(tempPlayer);
                     }
