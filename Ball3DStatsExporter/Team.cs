@@ -19,11 +19,13 @@ namespace Ball3DStatsExporter
         {
             Match_Result status = Match_Result.Draw;
 
-            if(int.Parse(pointsSumOfHalfs) > int.Parse(oppositeTeam.pointsSumOfHalfs))
+            int pointsOfATeam = int.Parse(pointsSumOfHalfs);
+            int pointsOfBTeam = int.Parse(oppositeTeam.pointsSumOfHalfs);
+            if (pointsOfATeam > pointsOfBTeam)
             {
                 status = Match_Result.Win;
             }
-            else
+            else if(pointsOfATeam < pointsOfBTeam)
             {
                 status = Match_Result.Lose;
             }
